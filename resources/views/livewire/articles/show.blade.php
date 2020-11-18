@@ -11,15 +11,27 @@
                     <div class="font-bold text-xl mb-2 uppercase text-gray-900">{{ $article['title'] }}</div>
                     <p class="text-base py-2 text-gray-900">{{ $article['body'] }}</p>
                 </div>
-                <div class="flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink">
-                    <div class="text-sm">
-                        <p class="text-gray-900 leading-none">{{$article->user->name}}</p>
-                        <p class="text-gray-dark">{{ $article['created_at']->diffForHumans() }}</p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink">
+                        <div class="text-sm">
+                            <p class="text-gray-900 leading-none">{{$article->user->name}}</p>
+                            <p class="text-gray-dark">{{ $article['created_at']->diffForHumans() }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        @foreach($article->tags as $tag)
+                            <a href="/tag/articles/{{$tag->id}}" class="text-xs font-black p-1 my-3 mr-2 border border-gray-300 bg-gray-200 text-black rounded-lg hover:bg-blue-400 hover:text-gray-900">
+                                {{ $tag->name }}
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @livewire('comments.show-comments')
+    <div>
+        <livewire:comments.create-comment :article="$article"/>
+        <livewire:comments.show-comments :article="$article"/>
+    </div>
 </div>

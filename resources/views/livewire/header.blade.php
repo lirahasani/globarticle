@@ -28,6 +28,7 @@
                 <li class="hover:text-blue-300"><a href="/">Home</a></li>
                 <li class="hover:text-blue-300"><a href="/articles">Articles</a></li>
                 <li class="hover:text-blue-300"><a href="/categories">Categories</a></li>
+                <li class="hover:text-blue-300"><a href="/tags">Tags</a></li>
                 <li class="hover:text-blue-300"><a href="/contact">Contact</a></li>
                 @if (Route::has('login'))
                     @auth

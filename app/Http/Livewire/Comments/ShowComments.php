@@ -11,10 +11,9 @@ class ShowComments extends Component
 {
     public $comments;
 
-    public function index($id)
+    public function mount(Article $article)
     {
-        $articles = Article::find($id);
-        $this->comments = $articles->comments()->get();
+        $this->comments = $article->comments;
     }
 
     public function render()

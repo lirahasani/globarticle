@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Articles;
 use Livewire\Component;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,9 +34,10 @@ class Create extends Component
 
     public function render()
     {
+        $tags = Tag::all();
         $categories = Category::all();
   
-        return view('livewire.articles.create', compact('categories'))
+        return view('livewire.articles.create', compact('categories', 'tags'))
             ->extends('layouts.app');
     }
 
@@ -45,7 +47,8 @@ class Create extends Component
                 'title'         => $this->form['title'] ?? '',
                 'body'          => $this->form['body'] ?? '',
                 'photo'         => $this->form['photo'] ?? '',
-                'category_id'   => $this->form['category_id'] ?? ''
+                'category_id'   => $this->form['category_id'] ?? '',
+                'tag_id'        => $this->form['tag_id'] ?? ''
         ];
     }
 
@@ -55,7 +58,8 @@ class Create extends Component
             'form.title'         => 'required|min:3|max:255',
             'form.body'          => 'required|min:3|max:1000',
             'form.photo'         => 'image|max:1024',
-            'form.category_id'   => 'required'
+            'form.category_id'   => 'required|exists:categories,id',
+            'form.tag_id'   => 'required'
         ];
     }
 }

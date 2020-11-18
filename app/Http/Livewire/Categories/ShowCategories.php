@@ -26,7 +26,7 @@ class ShowCategories extends Component
 
     public function render()
     {
-        $categories = Category::latest()->paginate(4);
+        $categories = Category::latest()->paginate(3);
         return view('livewire.categories.show-categories', compact('categories'))->extends('layouts.app');
     }
 }

@@ -16,8 +16,11 @@
                                 <th class="py-3 bg-gray-50 text-center uppercase tracking-wide text-gray-600 text-xs font-bold mb-2">
                                     Body
                                 </th>
-                                <th class="px-3 py-3 bg-gray-50 text-center uppercase tracking-wide text-gray-600 text-xs font-bold mb-2">
+                                 <th class="px-3 py-3 bg-gray-50 text-center uppercase tracking-wide text-gray-600 text-xs font-bold mb-2">
                                     Author
+                                </th>
+                                <th class="px-3 py-3 bg-gray-50 text-center uppercase tracking-wide text-gray-600 text-xs font-bold mb-2">
+                                    Comments
                                 </th>
                                 <th class="px-3 py-3 bg-gray-50 text-center uppercase tracking-wide text-gray-600 text-xs font-bold mb-2">
                                     Created At
@@ -40,7 +43,10 @@
                                     {{substr($article->body, 0, 100)}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-600">
-                                    Lira Hasani
+                                    {{$article->user->name}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 text-gray-600">
+                                    {{count($article->comments)}}
                                 </td>
                                 <td class="px-6 py-4 text-sm leading-5 text-gray-600">
                                     {{$article->created_at->shortRelativeDiffForHumans()}}
@@ -49,8 +55,8 @@
                                     {{$article->updated_at->shortRelativeDiffForHumans()}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-600">
-                                    <a href="/article/{{$article->id}}" class="p-2"><i class="fas fa-eye"></i></a>
-                                    <a href="/article/{{$article->id}}/edit" class="p-2"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('articles.show', $article) }}" class="p-2"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('articles.edit', $article) }}" class="p-2"><i class="fas fa-edit"></i></a>
                                     <button class="p-2 outline-none" wire:click="show({{$article->id}})" @click="open=true"><i class="far fa-trash-alt"></i></button>
                                 </td>
                             </tr>

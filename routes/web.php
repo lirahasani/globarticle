@@ -19,6 +19,8 @@ use App\Http\Livewire\Categories\ShowArticles;
 use App\Http\Livewire\Comments\ShowComments;
 use App\Http\Livewire\Comments\CreateComment;
 
+use App\Http\Livewire\Tag\ShowTagArticles;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +38,8 @@ Route::get('/contact', Contact::class);
 
 Route::get('/articles', Index::class);
 Route::get('/articles/create', Create::class);
-Route::get('/article/{article}/edit/', Edit::class)->name('articles.edit');
-Route::get('/article/{id}', Show::class);
+Route::get('/articles/{article}/edit/', Edit::class)->name('articles.edit');
+Route::get('/articles/{article}', Show::class)->name('articles.show');
 
 Route::get('/categories', ShowCategories::class);
 Route::get('/categories/create', CreateCategory::class);
@@ -47,6 +49,8 @@ Route::get('/category/{id}', ShowArticles::class);
 
 Route::get('/comments', ShowComments::class);
 Route::get('/comments/create', CreateComment::class);
+
+Route::get('/tag/articles/{id}', ShowTagArticles::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

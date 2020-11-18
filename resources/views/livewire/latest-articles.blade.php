@@ -23,6 +23,13 @@
                                 {{$article->title}}
                             </h1>
                             <p class="py-4 truncate">{{substr($article->body, 0, 120)}}<span class="tracking-widest">...<span></p>
+                            <div>
+                                @foreach($article->tags as $tag)
+                                    <a href="/tag/articles/{{$tag->id}}" class="text-xs font-black p-1 my-3 mr-2 border border-gray-300 bg-gray-200 text-black rounded-lg hover:bg-blue-400 hover:text-gray-900">
+                                        {{ $tag->name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                         <hr>
                         <div class="px-4 md:px-10">

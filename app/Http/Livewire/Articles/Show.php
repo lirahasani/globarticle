@@ -9,9 +9,9 @@ class Show extends Component
 {
     public $article;
 
-    public function mount($id)
+    public function mount(Article $article)
     {
-        $this->article = Article::find($id);
+        $this->article = $article;
     }
 
     public function render()

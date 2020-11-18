@@ -45,11 +45,27 @@
             <span class="text-info">{{ $message }}</span>
             @enderror
         </div>
-        <div class="flex flex-wrap -mx-3 mt-10 mb-12">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <div class="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-title">
+                    Tags
+                </div>
+                <select wire:model="form.tag_id" multiple class="w-full h-20 bg-gray-200 text-gray-700 px-4">
+                    @foreach($tags as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('form.tag_id')
+            <span class="text-info">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="flex flex-wrap -mx-3 mt-16 mb-12">
             <div class="w-full px-3">
                 <label class="rounded-lg px-20 text-center text-gray-500 p-8 cursor-pointer border border-dashed border-gray-500"
-            style="background-image: linear-gradient( 89.9deg,  rgba(208,246,255,1) 0.1%, rgba(255,237,237,1) 47.9%, rgba(255,255,231,1) 100.2% );">Upload Image
-                <input type="file" class="hidden" wire:model.lazy="form.photo">
+                style="background-image: linear-gradient( 89.9deg,  rgba(208,246,255,1) 0.1%, rgba(255,237,237,1) 47.9%, rgba(255,255,231,1) 100.2% );">
+                    Upload Image
+                    <input type="file" class="hidden" wire:model.lazy="form.photo">
                 </label>
             </div>
             @error('form.photo')

@@ -26,7 +26,12 @@ class Article extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'article_id');
+        return $this->hasMany(Comment::class)->latest();
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function getPhotoUrlAttribute()
